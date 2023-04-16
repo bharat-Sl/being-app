@@ -14,9 +14,9 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
         textTheme: TextTheme(
-          bodySmall: TextStyle(color: Colors.white),
-          bodyMedium: TextStyle(color: Colors.white),
-          bodyLarge: TextStyle(color: Colors.white),
+          bodySmall: TextStyle(color: Colors.white, letterSpacing: 0.2),
+          bodyMedium: TextStyle(color: Colors.white, letterSpacing: 0.2),
+          bodyLarge: TextStyle(color: Colors.white, letterSpacing: 0.2),
         ),
       ),
       home: Dashboard(),

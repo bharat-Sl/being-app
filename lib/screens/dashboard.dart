@@ -1,4 +1,5 @@
 import 'package:being/constants/colors.dart';
+import 'package:being/screens/discomforts_screen.dart';
 import 'package:being/screens/progress_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -21,7 +22,11 @@ class _DashboardState extends State<Dashboard> {
       body: Column(
         children: [
           Expanded(
-            child: ProgressScreen(),
+            child: [
+              DiscomfortsScreen(),
+              SizedBox(),
+              ProgressScreen()
+            ][selectedIndex],
           ),
           Container(
             height: 80,
