@@ -1,10 +1,15 @@
 import 'package:being/constants/colors.dart';
+import 'package:being/models/discomfort_model.dart';
+import 'package:being/providers/discomforts_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:provider/provider.dart';
 
 class DiscomfortsCard extends StatefulWidget {
   Function? onchange;
-  DiscomfortsCard({Key? key, this.onchange}) : super(key: key);
+  Discomfort discomfort;
+  DiscomfortsCard({Key? key, this.onchange, required this.discomfort})
+      : super(key: key);
 
   @override
   State<DiscomfortsCard> createState() => _DiscomfortsCardState();
@@ -100,7 +105,7 @@ class _DiscomfortsCardState extends State<DiscomfortsCard>
                                     ),
                                     SizedBox(width: 7),
                                     Text(
-                                      "avoidant attachment",
+                                      widget.discomfort.parentType,
                                       style: TextStyle(
                                           fontSize: 12,
                                           fontWeight: FontWeight.w500),
@@ -134,7 +139,7 @@ class _DiscomfortsCardState extends State<DiscomfortsCard>
                                     ),
                                     SizedBox(width: 7),
                                     Text(
-                                      "childhood flasdasdasd",
+                                      widget.discomfort.childType,
                                       style: TextStyle(
                                           fontSize: 12,
                                           fontWeight: FontWeight.w500),
@@ -152,9 +157,16 @@ class _DiscomfortsCardState extends State<DiscomfortsCard>
                 SizedBox(width: 16),
                 InkWell(
                   onTap: () {
-                    setState(() {
-                      selected = !selected;
-                    });
+                    if (Provider.of<DiscomfortsProvider>(context, listen: false)
+                            .selectedDs
+                            .length <
+                        3) {
+                      setState(() {
+                        selected = !selected;
+                        Provider.of<DiscomfortsProvider>(context, listen: false)
+                            .select(widget.discomfort);
+                      });
+                    }
                   },
                   child: Container(
                     width: 20,
@@ -193,7 +205,7 @@ class _DiscomfortsCardState extends State<DiscomfortsCard>
               children: [
                 Expanded(
                   child: Text(
-                    "I find it uncomfortable when my family does not understand the increased demands of my college",
+                    widget.discomfort.discomfort,
                     style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16),
                   ),
                 ),
@@ -270,7 +282,7 @@ class _DiscomfortsCardState extends State<DiscomfortsCard>
                               ])),
                             ),
                             SizedBox(height: 15),
-                            ...[1, 2, 3].map(
+                            ...widget.discomfort.objectives.map(
                               (e) => Padding(
                                 padding: EdgeInsets.symmetric(vertical: 2),
                                 child: Row(
@@ -289,7 +301,7 @@ class _DiscomfortsCardState extends State<DiscomfortsCard>
                                     SizedBox(width: 5),
                                     Expanded(
                                       child: Text(
-                                        "Understand how confidence can impact work/school.",
+                                        e,
                                         style: TextStyle(
                                             fontSize: 13,
                                             fontWeight: FontWeight.w500),

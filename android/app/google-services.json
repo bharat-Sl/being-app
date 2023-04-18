@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "644350733227",
+    "project_id": "being-19969",
+    "storage_bucket": "being-19969.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:644350733227:android:f008fea09073a14dd5c0ee",
+        "android_client_info": {
+          "package_name": "com.being.being"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "644350733227-564m656njocoqmtbufagjesfknk4duic.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAThkBYvh7uagMY3ijVcNvGWqVoT7TTABw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "644350733227-564m656njocoqmtbufagjesfknk4duic.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

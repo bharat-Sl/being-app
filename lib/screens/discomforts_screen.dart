@@ -1,8 +1,10 @@
 import 'package:being/components/discomforts_card.dart';
 import 'package:being/constants/colors.dart';
+import 'package:being/providers/discomforts_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:provider/provider.dart';
 
 class DiscomfortsScreen extends StatefulWidget {
   const DiscomfortsScreen({Key? key}) : super(key: key);
@@ -13,7 +15,14 @@ class DiscomfortsScreen extends StatefulWidget {
 
 class _DiscomfortsScreenState extends State<DiscomfortsScreen> {
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    var discomfortsProvider = Provider.of<DiscomfortsProvider>(context);
     Size size = MediaQuery.of(context).size;
     return SingleChildScrollView(
       child: Column(
@@ -217,21 +226,13 @@ class _DiscomfortsScreenState extends State<DiscomfortsScreen> {
                       letterSpacing: 1.2),
                 ),
                 SizedBox(height: 7.5),
-                DiscomfortsCard(
-                  onchange: (val) {
-                    print(val);
-                  },
-                ),
-                DiscomfortsCard(
-                  onchange: (val) {
-                    print(val);
-                  },
-                ),
-                DiscomfortsCard(
-                  onchange: (val) {
-                    print(val);
-                  },
-                ),
+                if (discomfortsProvider.loading)
+                  Center(
+                    child: CircularProgressIndicator(),
+                  )
+                else
+                  ...discomfortsProvider.allDs
+                      .map((e) => DiscomfortsCard(discomfort: e)),
               ],
             ),
           ),
